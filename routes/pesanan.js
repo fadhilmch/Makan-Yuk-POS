@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../models');
+const sequelize = require('sequelize');
+const op = sequelize.Op;
 
 router.get('/', (req, res) => {
     res.render('./pesanan/pesanan');
@@ -32,35 +34,80 @@ router.get('/:id/meja/:no_meja/pesan', (req, res) => {
     })
 });
 
-router.post('/:id/meja/:no_meja/pesan', (req, res) => {
-
-});
-
 router.get('/:id/meja/:no_meja/pesan/add', (req, res) => {
-    models.Menu.findAll()
-        .then(menus => {
-            res.render('./pesanan/pesanan-add', {
-                mejaId:req.params.id,menus:menus
-            })
-        });
+    models.PesananMenu.findAll({
+        include:[
+            {model: models.Menu}
+        ],
+        where:{
+            PesananId:req.params.id
+        }
+    }).then(pesanan => {
+        // res.send(pesanan)
+        models.Menu.findAll({
+            where:{
+                id:{
+                    [op.notIn]:(pesanan.map(val => val.MenuId))
+                }
+            }
+        })
+            .then(menus => {
+                res.render('./pesanan/pesanan-add', {
+                    id:req.params.id,mejaId:req.params.no_meja,menus:menus
+                })
+            });
+    })
+
 });
 
 router.post('/:id/meja/:no_meja/pesan/add', (req, res) => {
-    console.log("masuk");
-    models.Pesanan.findAll({
+    models.PesananMenu.create({
+        MenuId:req.body.MenuId,
+        PesananId:req.params.id,
+        quantity:req.body.quantity
+    }).then(() => {
+        res.redirect(`/pesanan/${req.params.id}/meja/${req.params.no_meja}/pesan`)
+    })
+});
+
+router.get('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
+    models.PesananMenu.findAll({
+        attributes:['id','MenuId','PesananId','quantity'],
+        include: [
+            {model: models.Pesanan},
+            {model: models.Menu}
+        ],
         where:{
-            mejaId:req.params.id,
-            status: "Ordering"
+            MenuId: req.params.id_menu,
+            PesananId: req.params.id
         }
-    }).then(pesanan => {
-        console.log(pesanan);
-        models.PesananMenu.create({
-            MenuId:req.body.MenuId,
-            PesananId:pesanan[0].id,
-            quantity:req.body.quantity
-        }).then(() => {
-            res.redirect('/pesanan/meja/${req.params.id}/pesan')
-        })
+    }).then((pesanan => {
+        // res.send(pesanan[0]);
+        res.render('./pesanan/pesanan-edit', {MenuId:req.params.id_menu,PesananId:req.params.id,pesanan:pesanan});
+    }))
+});
+
+router.post('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
+    models.PesananMenu.update({
+        quantity:req.body.quantity,
+    },{
+        where:{
+            MenuId:req.params.id_menu,
+            PesananId: req.params.id
+        }
+    }).then(() => {
+        res.redirect(`/pesanan/${req.params.id}/meja/${req.params.no_meja}/pesan`)
+    })
+});
+
+router.get('/:id/meja/:no_meja/pesan/delete/:id_menu', (req,res) => {
+    models.PesananMenu.destroy({
+        where:{
+            MenuId:req.params.id_menu,
+            PesananId: req.params.id
+        }
+    }).then(() => {
+        res.redirect(`/pesanan/${req.params.id}/meja/${req.params.no_meja}/pesan`)
     })
 });
 

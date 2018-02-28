@@ -19,15 +19,17 @@
                 <th>Keterangan</th>
                 <th></th>
             </tr>
+            <% for(let i = 0; i < pesanan.Menus.length; i++){%>
             <tr>
-                <td>No</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="">Edit</a> | <a href="">Delete</a></td>
+                <td><%=i+1%></td>
+                <td><%=pesanan.Menus[i].name%></td>
+                <td><%=pesanan.Menus[i].PesananMenu.quantity %></td>
+                <td><%=helper.rupiahString(pesanan.Menus[i].price) %></td>
+                <td><%=helper.rupiahString(helper.countTotal(pesanan.Menus[i].price, pesanan.Menus[i].PesananMenu.quantity))%></td>
+                <td><%= %></td>
+                <td><a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/edit/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Edit</a> | <a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/delete/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Delete</a></td>
             </tr>
+            <% } %>
         </table>
     </form>
 
