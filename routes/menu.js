@@ -17,6 +17,7 @@ router.post('/add', (req, res) =>{
     models.Menu.create({
         name: req.body.name,
         price: req.body.price,
+        jenis: req.body.jenis,
         createdAt: new Date(),
         updatedAt: new Date()
     }).then(function(){
@@ -36,6 +37,7 @@ router.post('/edit/:id', (req, res)=>{
     models.Menu.update({
         name: req.body.name,
         price: req.body.price,
+        jenis: req.body.jenis,
         updatedAt: new Date()
     }, { where: { id: req.params.id }
     }).then(dataMenu =>{
