@@ -5,28 +5,46 @@
         <th>No Meja</th>
         <th>Menu</th>
         <th>Quantity</th>
+        <th>Keterangan</th>
         <th>Action</th>
     </thead>
     <tbody>
+        <% for(let i=0; i<data.length; i++) {%>
         <tr>
-            <td>1</td>
+            <td><%= data[i].mejaId %></td>
             <td>
                 <ul>
-                    <li>Kepiting Saus Padang</li>
-                    <li>Udang Bakar Saus Madu</li>
-                    <li>Nasi Goreng Kambing</li>
-                    <li>Gurame Bakar</li>
+                    <% for(let j=0; j<data[i].Menus.length; j++){%>
+                    <li><%= data[i].Menus[j].name%></li>
+                    <% } %>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>2</li>
-                    <li>1</li>
-                    <li>1</li>
-                    <li>1</li>
+                    <% for(let k=0; k<data[i].Menus.length; k++){%>
+                    <li><%= data[i].Menus[k].PesananMenu.quantity %></li>
+                    <% } %>
                 </ul>
             </td>
-            <td>DONE</td>
+            <td>
+                <ul>
+                    <% for(let n=0; n<data[i].Menus.length; n++){%>
+                    <li><%= data[i].Menus[n].PesananMenu.keterangan %></li>
+                    <% } %>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <% for(let m=0; m<data[i].Menus.length; m++){%>
+                        <% if(data[i].Menus[m].PesananMenu.status === false){ %>
+                            <li><a href="">TOMBOL</a></li>
+                        <% } else { %>
+                            <li>done</li>
+                        <% } %>
+                    <% } %>
+                </ul>
+            </td>
         </tr>
+        <% } %>
     </tbody>
 </table>

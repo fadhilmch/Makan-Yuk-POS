@@ -3,8 +3,13 @@ const router = express.Router();
 const models = require('../models')
 
 router.get('/', (req, res)=>{
-    res.render('./kasir/kasir.ejs')
-    // res.send('kasir nih')
+    models.Pesanan.findAll({
+        include: 
+        {model: models.PesananMenu, model: models.Menu}
+    }).then(data =>{
+        // res.send(data)
+        res.render('./kasir/kasir.ejs', {data:data})
+    })
 })
 
 
