@@ -9,6 +9,8 @@ const routerDapur = require('./routes/dapur');
 
 const app = express();
 
+app.locals.helper = require('./helpers/helpers.js');
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
