@@ -8,12 +8,13 @@
  <body>
     <h1>Tambah Pesanan</h2>
 
-    <form action="/meja/:id/pesan" method="post">
+    <form action="/pesanan/meja/<%=mejaId%>/pesan/add" method="post">
         Menu yang dipesan:</br>
         <table>
             <tr>
                 <th>Nama Menu</th>
                 <th>Jumlah</th>
+                <th>Keterangan</th>
             </tr>
             <tr>
                 <td>
@@ -26,8 +27,12 @@
                 <td>
                     <input type='text' name='quantity'>
                 </td>
+                <td>
+                    <input type='text' name='keterangan'>
+                </td>
             </tr>
         </table>
+        <input type="submit" value="Tambah Pesanan">
     </form>
 
 

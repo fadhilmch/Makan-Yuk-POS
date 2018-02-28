@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Menu.associate = function(models) {
     // associations can be defined here
+    Menu.belongsToMany(models.Pesanan,{through: models.PesananMenu});
+    Menu.hasMany(models.PesananMenu);
   };
   return Menu;
 };
