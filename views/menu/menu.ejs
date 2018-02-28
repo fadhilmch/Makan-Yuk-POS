@@ -1,0 +1,27 @@
+<%- include('../partial/menu.ejs') %>
+
+
+<h2>Table Menu</h2>
+<a href="/menus/add">Tambah Menu</a>
+<table>
+    <thead>
+        <th>No</th>
+        <th>Nama Menu</th>
+        <th>Harga Menu</th>
+        <th>Jenis</th>
+    </thead>
+    <tbody>
+        <% for(let i=0; i<data.length; i++){%>
+        <tr>
+            <td><%= data[i].id %></td>
+            <td><%= data[i].name %></td>
+            <td><%= data[i].price %></td>
+            <td><%= data[i].jenis %></td>
+            <td>
+                <a href="/menus/edit/<%= data[i].id %>">EDIT</a>
+                <a href="/menus/delete/<%= data[i].id %>">DELETE</a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Makan Yuk</title>
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css"></head>
+ <body>
+    <%- include('../partial/menu.ejs') %>
+
+    <h1>Pesanan</h2>
+
+    <form action="/pesanan" method="post">
+        Choose table to serve:<br>
+        <button name="table_number" type="submit" value="1">Table 1</button>
+        <button name="table_number" type="submit" value="2">Table 2</button>
+        <button name="table_number" type="submit" value="3">Table 3</button><br>
+        <button name="table_number" type="submit" value="4">Table 4</button>
+        <button name="table_number" type="submit" value="5">Table 5</button>
+        <button name="table_number" type="submit" value="6">Table 6</button><br>
+    </form>
+
+
+ </body>

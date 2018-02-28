@@ -1,0 +1,41 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Makan Yuk</title>
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css"></head>
+ <body>
+    <%- include('../partial/menu.ejs') %>
+
+    <h1>Tambah Pesanan</h2>
+
+    <form action="/pesanan/<%=id%>/meja/<%=mejaId%>/pesan/add" method="post">
+        Menu yang dipesan:</br>
+        <table>
+            <tr>
+                <th>Nama Menu</th>
+                <th>Jumlah</th>
+                <th>Keterangan</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name='MenuId'>
+                         <% for(let i = 0; i < menus.length; i++){%>
+                             <option value = "<%=menus[i].id%>"><%=menus[i].name%></option>
+                         <%}%>
+                    </select><br>
+                </td>
+                <td>
+                    <input type='text' name='quantity'>
+                </td>
+                <td>
+                    <input type='text' name='keterangan'>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Tambah Pesanan">
+    </form>
+
+
+ </body>
