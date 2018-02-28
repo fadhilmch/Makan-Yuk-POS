@@ -1,0 +1,26 @@
+{
+  "name": "makan-yuk-pos",
+  "version": "1.0.0",
+  "description": "Point of sales platforms for Restaurant and Cafe",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fadhilmch/Makan-Yuk-POS.git"
+  },
+  "author": "Fadhil Mochammad, Yohanes Sahrul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fadhilmch/Makan-Yuk-POS/issues"
+  },
+  "homepage": "https://github.com/fadhilmch/Makan-Yuk-POS#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "pg": "^7.4.1",
+    "sequelize": "^4.34.1"
+  }
+}
