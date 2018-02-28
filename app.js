@@ -17,9 +17,9 @@ app.use(express.static('public'));
 
 // ROUTES
 app.use('/', routerIndex);
-app.use('/menu', routerMenu);
-app.use('/pesanan', routerPesanan);
 
+app.use('/menus', routerMenu);
+app.use('/pesanan', routerPesanan);
 
 app.listen(3000, function(err){
     console.log('Aplikasi berjalan di 3000')
