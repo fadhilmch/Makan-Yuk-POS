@@ -1,9 +1,13 @@
 <%- include('../partial/header.ejs') %>
 <%- include('../partial/menu.ejs') %>
+<h3><a href="/dapur/makanan">Makanan</a></h3>
+<h3><a href="/dapur/minuman">Minuman</a></h3>
 
-<table border="1">
+<h3>Pesanan Baru</h3>
+<table>
     <thead>
-        <th>id</th>
+        <th>No</th>
+        <th>ID Pesanan</th>
         <th>No Meja</th>
         <th>Menu</th>
         <th>Quantity</th>
@@ -13,43 +17,48 @@
     <tbody>
         <% for(let i=0; i<data.length; i++) {%>
         <tr>
-            <td><%= data[i].id %></td>
-            <td><%= data[i].mejaId %></td>
+            <td><%= i+1%></td>
+            <td><%= data[i].Pesanan.id %></td>
+            <td><%= data[i].Pesanan.mejaId %></td>
+            <td><%= data[i].Menu.name%></td>
+            <td><%= data[i].quantity%></td>
+            <td><%= data[i].keterangan%></td>
             <td>
-                <ul>
-                    <% for(let j=0; j<data[i].Menus.length; j++){%>
-                    <li><%= data[i].Menus[j].name%></li>
-                    <% } %>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <% for(let k=0; k<data[i].Menus.length; k++){%>
-                    <li><%= data[i].Menus[k].PesananMenu.quantity %></li>
-                    <% } %>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <% for(let n=0; n<data[i].Menus.length; n++){%>
-                    <li><%= data[i].Menus[n].PesananMenu.keterangan %></li>
-                    <% } %>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <% for(let m=0; m<data[i].Menus.length; m++){%>
-                        <% if(data[i].Menus[m].PesananMenu.status === false){ %>
-                            <li><a href="/dapur/<%= data[i].PesananMenus[m].id %>/done">TOMBOL</a></li>
-                        <% } else { %>
-                            <li>done</li>
-                        <% } %>
-                    <% } %>
-                </ul>
+                <% if(data[i].status == false) { %>
+                    <a href="/dapur/<%=data[i].id %>/done">Done</a><br>
+                <% } else { %>
+                    Done
+                <% } %>
             </td>
         </tr>
         <% } %>
     </tbody>
 </table>
 
+
+
+<h3>Pesanan Selesai</h3>
+<table>
+    <thead>
+        <th>No</th>
+        <th>ID Pesanan</th>
+        <th>No Meja</th>
+        <th>Menu</th>
+        <th>Quantity</th>
+        <th>Keterangan</th>
+    </thead>
+    <tbody>
+        <% for(let i=0; i<dataDone.length; i++) {%>
+        <tr>
+            <td><%= i+1%></td>
+            <td><%= dataDone[i].Pesanan.id %></td>
+            <td><%= dataDone[i].Pesanan.mejaId %></td>
+            <td><%= dataDone[i].Menu.name%></td>
+            <td><%= dataDone[i].quantity%></td>
+            <td><%= dataDone[i].keterangan%></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
 <%- include('../partial/footer.ejs') %>
+
