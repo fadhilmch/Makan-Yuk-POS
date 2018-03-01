@@ -3,8 +3,10 @@ const router = express.Router();
 const models = require('../models');
 const sequelize = require('sequelize');
 const op = sequelize.Op;
+const checkLogin = require('../helpers/checkLogin');
 
-router.get('/', (req, res) => {
+
+router.get('/',checkLogin, (req, res) => {
     models.Pesanan.findAll({
         where:{
             status:{
@@ -18,7 +20,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
+router.post('/',checkLogin, (req, res) => {
     let table_number = req.body.table_number;
     models.Pesanan.create({
         mejaId: table_number,
@@ -31,7 +33,7 @@ router.post('/', (req, res) => {
 });
 
 
-router.get('/:id/meja/:no_meja/pesan', (req, res) => {
+router.get('/:id/meja/:no_meja/pesan',checkLogin, (req, res) => {
     let err = req.query;
     models.Pesanan.findById(req.params.id,{
         include:[
@@ -55,7 +57,7 @@ router.get('/:id/meja/:no_meja/pesan', (req, res) => {
     })
 });
 
-router.post('/:id/meja/:no_meja/pesan', (req, res) => {
+router.post('/:id/meja/:no_meja/pesan',checkLogin, (req, res) => {
     models.PesananMenu.create({
         MenuId:req.body.MenuId,
         PesananId:req.params.id,
@@ -68,7 +70,7 @@ router.post('/:id/meja/:no_meja/pesan', (req, res) => {
     })
 });
 
-router.get('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
+router.get('/:id/meja/:no_meja/pesan/edit/:id_menu',checkLogin, (req,res) => {
     models.Pesanan.findById(req.params.id,{
         include:[
             {model: models.PesananMenu},
@@ -89,7 +91,7 @@ router.get('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
     })
 });
 
-router.post('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
+router.post('/:id/meja/:no_meja/pesan/edit/:id_menu',checkLogin, (req,res) => {
     models.PesananMenu.update({
         quantity:req.body.quantity,
         keterangan:req.body.keterangan
@@ -103,7 +105,7 @@ router.post('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
     })
 });
 
-router.get('/:id/meja/:no_meja/pesan/delete/:id_menu', (req,res) => {
+router.get('/:id/meja/:no_meja/pesan/delete/:id_menu',checkLogin, (req,res) => {
     models.PesananMenu.destroy({
         where:{
             MenuId:req.params.id_menu,
@@ -114,7 +116,7 @@ router.get('/:id/meja/:no_meja/pesan/delete/:id_menu', (req,res) => {
     })
 });
 
-router.post('/:id/meja/:no_meja/pesan/done', (req,res) => {
+router.post('/:id/meja/:no_meja/pesan/done',checkLogin, (req,res) => {
     models.Pesanan.update({
         status: "On Process"
     },{

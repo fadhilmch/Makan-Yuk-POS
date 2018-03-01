@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const models = require('../models')
+const models = require('../models');
+const checkLogin = require('../helpers/checkLogin');
 
-router.get('/', (req, res)=>{
+
+router.get('/',checkLogin, (req, res)=>{
     models.Pesanan.findAll({
-        include: 
+        include:
         {model: models.PesananMenu, model: models.Menu}
     }).then(data =>{
         // res.send(data)
@@ -14,4 +16,3 @@ router.get('/', (req, res)=>{
 
 
 module.exports = router;
-
