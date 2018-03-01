@@ -7,6 +7,7 @@
         <th>Quantity</th>
         <th>Price</th>
         <th>Total</th>
+        <th>Status</th>
         <th>Action</th>
     </thead>
     <tbody>
@@ -42,6 +43,13 @@
                 </ul>
             </td>
             <td><%= data[i].status %></td>
+            <td>
+                <% if(data[i].status != 'done'){ %>
+                    <a href="/kasir/<%= data[i].id %>/struk">BAYAR</a>
+                <% } else { %>
+                    Sudah Bayar
+                <% } %>
+            </td>
         </tr>
         <% } %>
     </tbody>

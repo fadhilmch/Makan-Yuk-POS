@@ -2,6 +2,7 @@
 
 <table border="1">
     <thead>
+        <th>id</th>
         <th>No Meja</th>
         <th>Menu</th>
         <th>Quantity</th>
@@ -11,6 +12,7 @@
     <tbody>
         <% for(let i=0; i<data.length; i++) {%>
         <tr>
+            <td><%= data[i].id %></td>
             <td><%= data[i].mejaId %></td>
             <td>
                 <ul>
@@ -37,7 +39,7 @@
                 <ul>
                     <% for(let m=0; m<data[i].Menus.length; m++){%>
                         <% if(data[i].Menus[m].PesananMenu.status === false){ %>
-                            <li><a href="">TOMBOL</a></li>
+                            <li><a href="/dapur/<%= data[i].PesananMenus[m].id %>/done">TOMBOL</a></li>
                         <% } else { %>
                             <li>done</li>
                         <% } %>
