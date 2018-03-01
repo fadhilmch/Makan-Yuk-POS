@@ -1,12 +1,5 @@
-<!doctype html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Makan Yuk</title>
-
-  <link rel="stylesheet" href="/css/style.css" type="text/css"></head>
- <body>
-     <%- include('../partial/menu.ejs') %>
+<%- include('../partial/header.ejs') %>
+<%- include('../partial/menu.ejs') %>
 
     <h1>List Pesanan Meja <%=pesanan.mejaId%> </h2>
 
@@ -71,4 +64,5 @@
 <div>
 
 
- </body>
+    
+<%- include('../partial/footer.ejs') %>

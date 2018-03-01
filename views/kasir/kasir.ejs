@@ -1,6 +1,71 @@
+<%- include('../partial/header.ejs') %>
 <%- include('../partial/menu.ejs') %>
 
-<table border="1">
+
+<div class="container">
+        <h2>Status Meja</h2>        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+                <th>No</th>
+                <th>Meja</th>
+                <th>Menu</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i=0; i<data.length; i++) {%>
+            <tr>
+                <% no=i+1 %>
+              <td><%= no %></td>
+              <td><%= data[i].mejaId %></td>
+              <td>
+                <ul class="list-group">
+                    <% for(let j=0; j<data[i].Menus.length; j++){%>
+                    <li><%= data[i].Menus[j].name%></li>
+                    <% } %>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-group">
+                    <% for(let k=0; k<data[i].Menus.length; k++){%>
+                    <li><%= data[i].Menus[k].PesananMenu.quantity %></li>
+                    <% } %>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-group">
+                    <% for(let k=0; k<data[i].Menus.length; k++){%>
+                    <li><%= helper.rupiahString(data[i].Menus[k].price) %></li>
+                    <% } %>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-group">
+                    <% for(let k=0; k<data[i].Menus.length; k++){%>
+                    <li><%= helper.rupiahString(helper.countTotal(data[i].Menus[k].price, data[i].Menus[k].PesananMenu.quantity)) %></li>
+                    <% } %>
+                </ul>
+              </td>
+              <td><%= data[i].status %></td>
+              <td>
+                <% if(data[i].status != 'done'){ %>
+                    <a class="btn btn-danger" href="/kasir/<%= data[i].id %>/struk">BAYAR</a>
+                <% } else { %>
+                    <a class="btn btn-success" href="">Sudah Bayar</a>
+                <% } %>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+<!-- <table border="1">
     <thead>
         <th>No Meja</th>
         <th>Menu</th>
@@ -53,4 +118,7 @@
         </tr>
         <% } %>
     </tbody>
-</table>
+</table> -->
+
+
+<%- include('../partial/footer.ejs') %>

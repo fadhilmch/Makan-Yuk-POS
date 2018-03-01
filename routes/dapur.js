@@ -41,6 +41,7 @@ router.get('/makanan',(req,res) => {
          order:[['createdAt','ASC']],
     }).then(data =>{
         // res.send(data)
+
         models.PesananMenu.findAll({
             attributes:['id','quantity','keterangan','PesananId','status'],
             include:[
@@ -65,6 +66,7 @@ router.get('/makanan',(req,res) => {
             console.log(idArr);
             res.render('./dapur/dapur.ejs', {idArr:idArr,data:data,dataDone:dataDone})
         })
+
     })
 })
 

@@ -1,15 +1,40 @@
+<%- include('../partial/header.ejs') %>
 <%- include('../partial/menu.ejs') %>
 
-<h2>Form Edit Menu</h2>
-<% if(err != undefined){%>
-<p style="color:red"><%=err.err%></p>
-<% } %>
-<form method="POST" action="/menus/edit/<%= data.id %>">
-    <input value="<%= data.name %>" type="text" name="name" placeholder="Nama menu.."><br><br>
-    <input value="<%= data.price %>" type="text" name="price" placeholder="Harga menu.."><br><br>
-    <select name="jenis">
-            <option value="makanan" <% if(data.jenis === 'makanan'){%> selected <% } else { %> <% } %> > makanan</option>
-            <option value="minuman" <% if(data.jenis === 'minuman'){%> selected <% } else { %> <% } %> > minuman</option>
-        </select>
-    <input type="submit" value="Simpan">
-</form>
+<div class="container">
+
+    <h2>Form Menu</h2>
+    <% if(err != undefined){%>
+    <p style="color:red"><%=err.err%></p>
+    <% } %>
+    <!-- <form method="POST" action="/menus/edit/<%= data.id %>">
+        <input value="<%= data.name %>" type="text" name="name" placeholder="Nama menu.."><br><br>
+        <input value="<%= data.price %>" type="text" name="price" placeholder="Harga menu.."><br><br>
+        <select name="jenis">
+                <option value="makanan" <% if(data.jenis === 'makanan'){%> selected <% } else { %> <% } %> > makanan</option>
+                <option value="minuman" <% if(data.jenis === 'minuman'){%> selected <% } else { %> <% } %> > minuman</option>
+            </select>
+        <input type="submit" value="Simpan">
+    </form> -->
+
+    <form method="POST" action="/menus/edit/<%= data.id %>">
+        <div class="form-group">
+            <label for="name">Nama Menu:</label>
+            <input value="<%= data.name %>" type="text" class="form-control" name="name" id="name">
+        </div>
+        <div class="form-group">
+            <label for="price">Harga Menu:</label>
+            <input value="<%= data.price %>" type="text" class="form-control" name="price" id="price">
+        </div>
+        <div class="form-group">
+            <label for="sel1">Jenis:</label>
+            <select class="form-control" name="jenis" id="sel1">
+                <option value="makanan" <% if(data.jenis === 'makanan'){%> selected <% } else { %> <% } %> >makanan</option>
+                <option value="minuman" <% if(data.jenis === 'minuman'){%> selected <% } else { %> <% } %> >minuman</option>
+            </select>
+        </div>
+              
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+</div>

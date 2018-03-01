@@ -1,6 +1,10 @@
+<%- include('../partial/header.ejs') %>
+<%- include('../partial/menu.ejs') %>
 
+<div class="container">
+    
 <h1>Meja <%= data[0].mejaId %></h1>
-<table border="1">
+<table  class="table table-striped">
     <tr>
         <td>No</td>
         <td>Name</td>
@@ -10,7 +14,6 @@
     </tr>
     <% let total = 0 %>
     <% for(let i=0; i<data[0].Menus.length; i++){ %>
-        
         <tr>
             <% no=i+1 %>
             <td><%= no %></td>
@@ -21,9 +24,15 @@
             <% total += data[0].PesananMenus[i].quantity*data[0].Menus[i].price %>
         </tr>
     <% } %>
+    <tr>
+        <td colspan="4"></td>
+        <td><%= helper.rupiahString(total) %></td>
+    </tr>
 </table>
-<h3>Total Bayar = <%= total %></h3>
 
-<br><br>
 
-<a href="/kasir/<%= data[0].id %>/bayar">BAYAR</a>
+<a class="btn btn-primary btn-lg btn-block" href="/kasir/<%= data[0].id %>/bayar">BAYAR</a>
+
+</div>
+
+<%- include('../partial/footer.ejs') %>
