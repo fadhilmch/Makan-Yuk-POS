@@ -27,3 +27,8 @@ body{
 #nav_bar li a:hover {
     background-color: black;
 }
+
+.pad-top100 {
+    padding-top: 100px;
+    background: red;
+}

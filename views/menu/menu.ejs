@@ -1,27 +1,37 @@
+<%- include('../partial/header.ejs') %>
 <%- include('../partial/menu.ejs') %>
 
+<div class="container">
 
 <h2>Table Menu</h2>
-<a href="/menus/add">Tambah Menu</a>
-<table>
-    <thead>
+
+<a class="btn btn-primary" href="/menus/add">Tambah Menu</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
         <th>No</th>
         <th>Nama Menu</th>
         <th>Harga Menu</th>
         <th>Jenis</th>
-    </thead>
-    <tbody>
-        <% for(let i=0; i<data.length; i++){%>
-        <tr>
-            <td><%= data[i].id %></td>
-            <td><%= data[i].name %></td>
-            <td><%= data[i].getPriceRupiah() %></td>
-            <td><%= data[i].jenis %></td>
-            <td>
-                <a href="/menus/edit/<%= data[i].id %>">EDIT</a>
-                <a href="/menus/delete/<%= data[i].id %>">DELETE</a>
-            </td>
-        </tr>
-        <% } %>
-    </tbody>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i=0; i<data.length; i++){%>
+    <tr>
+        <% no=i+1%>
+        <td><%= no %></td>
+        <td><%= data[i].name %></td>
+        <td><%= data[i].getPriceRupiah() %></td>
+        <td><%= data[i].jenis %></td>
+        <td>
+            <a class="btn btn-warning" href="/menus/edit/<%= data[i].id %>">EDIT</a>
+            <a class="btn btn-danger" href="/menus/delete/<%= data[i].id %>">DELETE</a>
+        </td>
+    </tr>
+    <% } %>
+  </tbody>
 </table>
+</div>
+
+<%- include('../partial/footer.ejs') %>

@@ -10,8 +10,8 @@ router.get('/',checkLogin, (req, res)=>{
         [{model: models.PesananMenu, attributes: ['id','status']},{model: models.Menu}]
 
     }).then(data =>{
-        res.send(data)
-        // res.render('./dapur/dapur.ejs', {data:data})
+        // res.send(data)
+        res.render('./dapur/dapur.ejs', {data:data})
     })
 })
 
