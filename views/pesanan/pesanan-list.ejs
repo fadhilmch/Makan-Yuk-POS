@@ -6,9 +6,44 @@
 
   <link rel="stylesheet" href="/css/style.css" type="text/css"></head>
  <body>
+     <%- include('../partial/menu.ejs') %>
+
     <h1>List Pesanan Meja <%=pesanan.mejaId%> </h2>
-    <h4><a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/add">Tambah Pesanan</a></h4>
-    <form action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan" method="post">
+
+<div>
+            <h2>Tambah Pesanan</h2>
+            <% if(err != undefined){%>
+            <p style="color:red"><%=err.err%></p>
+            <% } %>
+            <form action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan" method="post">
+                <table>
+                    <tr>
+                        <th>Nama Menu</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name='MenuId'>
+                                 <% for(let i = 0; i < menus.length; i++){%>
+                                     <option value = "<%=menus[i].id%>"><%=menus[i].name%></option>
+                                 <%}%>
+                            </select><br>
+                        </td>
+                        <td>
+                            <input type='text' name='quantity'>
+                        </td>
+                        <td>
+                            <input type='text' name='keterangan'>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Tambah Pesanan">
+            </form>
+        </div><br><br>
+        <div>
+
+    <form action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/done" method="post">
         <table>
             <tr>
                 <th>No</th>
@@ -26,12 +61,14 @@
                 <td><%=pesanan.Menus[i].PesananMenu.quantity %></td>
                 <td><%=helper.rupiahString(pesanan.Menus[i].price) %></td>
                 <td><%=helper.rupiahString(helper.countTotal(pesanan.Menus[i].price, pesanan.Menus[i].PesananMenu.quantity))%></td>
-                <td><%= %></td>
+                <td><%=pesanan.Menus[i].PesananMenu.keterangan%></td>
                 <td><a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/edit/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Edit</a> | <a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/delete/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Delete</a></td>
             </tr>
             <% } %>
         </table>
+        <input type='submit' value='Proses Pesanan'>
     </form>
+<div>
 
 
  </body>
