@@ -6,30 +6,73 @@
 
   <link rel="stylesheet" href="/css/style.css" type="text/css"></head>
  <body>
-    <%- include('../partial/menu.ejs') %>
+     <%- include('../partial/menu.ejs') %>
 
-    <h1>Edit Pesanan</h2>
+    <h1>Edit Pesanan Meja <%=pesanan.mejaId%> </h2>
 
-    <form action="/pesanan/<%=PesananId%>/meja/<%=pesanan[0].Pesanan.mejaId%>/pesan/edit/<%=MenuId%>" method="post">
-        Menu yang dipesan:</br>
+<div>
+            <h2>Tambah Pesanan</h2>
+            <form action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan" method="post">
+                <table>
+                    <tr>
+                        <th>Nama Menu</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name='MenuId'>
+                                 <% for(let i = 0; i < menus.length; i++){%>
+                                     <option value = "<%=menus[i].id%>"><%=menus[i].name%></option>
+                                 <%}%>
+                            </select><br>
+                        </td>
+                        <td>
+                            <input type='text' name='quantity'>
+                        </td>
+                        <td>
+                            <input type='text' name='keterangan'>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Tambah Pesanan">
+            </form>
+        </div><br><br>
+        <div>
+    <form action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/edit/<%=id_menu%>" method="post">
         <table>
             <tr>
+                <th>No</th>
                 <th>Nama Menu</th>
                 <th>Jumlah</th>
+                <th>Harga Satuan</th>
+                <th>Harga Jumlah</th>
                 <th>Keterangan</th>
+                <th></th>
             </tr>
+            <% for(let i = 0; i < pesanan.Menus.length; i++){%>
             <tr>
-                <td><%=pesanan[0].Menu.name%></td>
-                <td>
-                    <input type='text' name='quantity' value='<%=pesanan[0].quantity%>'>
-                </td>
-                <td>
-                    <input type='text' name='keterangan'>
-                </td>
+                <td><%=i+1%></td>
+                <td><%=pesanan.Menus[i].name%></td>
+                <%if(pesanan.Menus[i].id == id_menu){%>
+                    <td><input type='text' name='quantity' value='<%=pesanan.Menus[i].PesananMenu.quantity%>'></td>
+                <% } else {%>
+                    <td><%=pesanan.Menus[i].PesananMenu.quantity %></td>
+                <% } %>
+                <td><%=helper.rupiahString(pesanan.Menus[i].price) %></td>
+                <td><%=helper.rupiahString(helper.countTotal(pesanan.Menus[i].price, pesanan.Menus[i].PesananMenu.quantity))%></td>
+                <%if(pesanan.Menus[i].id == id_menu){%>
+                    <td><input type='text' name='keterangan' value='<%=pesanan.Menus[i].PesananMenu.keterangan%>'></td>
+                    <td><input type='submit' value='Save Edit'></td>
+                <% } else {%>
+                    <td><%=pesanan.Menus[i].PesananMenu.keterangan%></td>
+                    <td><a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/edit/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Edit</a> | <a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/delete/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Delete</a></td>
+                <% } %>
             </tr>
+            <% } %>
         </table>
-        <input type="submit" value="Simpan Edit">
     </form>
+<div>
 
 
  </body>
