@@ -5,7 +5,17 @@ const sequelize = require('sequelize');
 const op = sequelize.Op;
 
 router.get('/', (req, res) => {
-    res.render('./pesanan/pesanan');
+    models.Pesanan.findAll({
+        where:{
+            status:{
+                [op.or]:['Ordering','On Process','Served']
+            }
+        }
+    })
+        .then(pesanans => {
+            // res.send(pesanans.map(value => value.mejaId))
+            res.render('./pesanan/pesanan',{pesanans:pesanans.map(value => value.mejaId)});
+        })
 });
 
 router.post('/', (req, res) => {
@@ -79,23 +89,6 @@ router.get('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
     })
 });
 
-// router.get('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
-//     models.PesananMenu.findAll({
-//         attributes:['id','MenuId','PesananId','quantity'],
-//         include: [
-//             {model: models.Pesanan},
-//             {model: models.Menu}
-//         ],
-//         where:{
-//             MenuId: req.params.id_menu,
-//             PesananId: req.params.id
-//         }
-//     }).then((pesanan => {
-//         // res.send(pesanan[0]);
-//         res.render('./pesanan/pesanan-edit', {MenuId:req.params.id_menu,PesananId:req.params.id,pesanan:pesanan});
-//     }))
-// });
-
 router.post('/:id/meja/:no_meja/pesan/edit/:id_menu', (req,res) => {
     models.PesananMenu.update({
         quantity:req.body.quantity,
@@ -120,5 +113,18 @@ router.get('/:id/meja/:no_meja/pesan/delete/:id_menu', (req,res) => {
         res.redirect(`/pesanan/${req.params.id}/meja/${req.params.no_meja}/pesan`)
     })
 });
+
+router.post('/:id/meja/:no_meja/pesan/done', (req,res) => {
+    models.Pesanan.update({
+        status: "On Process"
+    },{
+        where: {
+            id:req.params.id
+        }
+    }).then(() => {
+        res.redirect('/pesanan');
+    })
+})
+
 
 module.exports = router;

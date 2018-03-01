@@ -12,12 +12,24 @@
 
     <form action="/pesanan" method="post">
         Choose table to serve:<br>
-        <button name="table_number" type="submit" value="1">Table 1</button>
-        <button name="table_number" type="submit" value="2">Table 2</button>
-        <button name="table_number" type="submit" value="3">Table 3</button><br>
-        <button name="table_number" type="submit" value="4">Table 4</button>
-        <button name="table_number" type="submit" value="5">Table 5</button>
-        <button name="table_number" type="submit" value="6">Table 6</button><br>
+        <div>
+            <button name="table_number" type="submit" <%if(pesanans.indexOf(1)!= -1) {%>disabled<% } %> value="1">Table 1</button>
+        </div>
+        <div>
+            <button name="table_number" type="submit" <%if(pesanans.indexOf(2)!= -1) {%>disabled<% } %> value="2">Table 2</button>
+        </div>
+        <div>
+            <button name="table_number" type="submit" <%if(pesanans.indexOf(3)!= -1) {%>disabled<% } %> value="3">Table 3</button>
+        </div>
+        <div>
+            <button name="table_number" type="submit" <%if(pesanans.indexOf(4)!= -1) {%>disabled<% } %> value="4">Table 4</button>
+        </div>
+        <div>
+            <button name="table_number" type="submit" <%if(pesanans.indexOf(5)!= -1) {%>disabled<% } %> value="5">Table 5</button>
+        </div>
+        <div>
+            <button name="table_number" type="submit" <%if(pesanans.indexOf(6)!= -1) {%>disabled<% } %> value="6">Table 6</button>
+        </div>
     </form>
 
 
