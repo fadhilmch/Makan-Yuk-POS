@@ -1,6 +1,9 @@
 <%- include('../partial/menu.ejs') %>
 
 <h2>Form Add Menu</h2>
+<% if(err != undefined){%>
+<p style="color:red"><%=err.err%></p>
+<% } %>
 <form method="POST" action="/menus/add">
     <input type="text" name="name" placeholder="Nama menu.."><br><br>
     <input type="text" name="price" placeholder="Harga menu.."><br><br>

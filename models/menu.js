@@ -1,24 +1,24 @@
 'use strict';
+
+const sequelize = require('sequelize');
+const op = sequelize.Op;
+
 module.exports = (sequelize, DataTypes) => {
   var Menu = sequelize.define('Menu', {
-    name: DataTypes.STRING,
+    name: {
+        type:DataTypes.STRING,
+    },
     price: DataTypes.INTEGER,
-    jenis: DataTypes.STRING
-    // jenis: {
-    //   type: sequelize.STRING,
-    //   validate: {
-    //     mustNumber(value){
-    //       if(typeof value != 'integer'){
-    //         throw new Error("Hanya bisa diisi angka !")
-            
-    //       }
-    //     }
-    //   }
-    // }
+    jenis: {
+      type: DataTypes.STRING,
+    }
   }, {});
   Menu.associate = function(models) {
     Menu.belongsToMany(models.Pesanan,{through: models.PesananMenu});
     Menu.hasMany(models.PesananMenu);
   };
+  Menu.prototype.getPriceRupiah = function() {
+      return "Rp. "+this.price.toLocaleString();
+  }
   return Menu;
 };

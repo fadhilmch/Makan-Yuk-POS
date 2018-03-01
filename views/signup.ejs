@@ -1,0 +1,25 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Makan Yuk</title>
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css"></head>
+ <body>
+    <h2>Makan Yuk</h2>
+    <a href="/login">Login</a>
+    <h3>Sign Up</h3>
+    <%if(err.err!=undefined){%>
+    <p style="color:red"><%=err.err%></p>
+    <% } %>
+    <form action="/signup" method="post">
+    Username:<br>
+    <input name="username" type="text" required placeholder="Username"><br>
+    Password:<br>
+    <input name="password" type="password" required placeholder="Password"><br>
+    <input type="submit" value="Sing Up">
+
+    </form>
+
+
+ </body>
