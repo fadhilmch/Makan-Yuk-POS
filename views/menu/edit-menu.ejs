@@ -1,10 +1,12 @@
-<a href="/menus">Menu</a><br>
-
+<%- include('../partial/menu.ejs') %>
 
 <h2>Form Edit Menu</h2>
 <form method="POST" action="/menus/edit/<%= data.id %>">
     <input value="<%= data.name %>" type="text" name="name" placeholder="Nama menu.."><br><br>
     <input value="<%= data.price %>" type="text" name="price" placeholder="Harga menu.."><br><br>
-    <input value="<%= data.jenis %>" type="text" name="jenis" placeholder="Jenis menu.."><br><br>
+    <select name="jenis">
+            <option value="makanan" <% if(data.jenis === 'makanan'){%> selected <% } else { %> <% } %> > makanan</option>
+            <option value="minuman" <% if(data.jenis === 'minuman'){%> selected <% } else { %> <% } %> > minuman</option>
+        </select>
     <input type="submit" value="Simpan">
 </form>

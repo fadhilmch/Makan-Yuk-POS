@@ -5,6 +5,7 @@
         <th>No Meja</th>
         <th>Menu</th>
         <th>Quantity</th>
+        <th>Price</th>
         <th>Total</th>
         <th>Action</th>
     </thead>
@@ -27,7 +28,18 @@
                 </ul>
             </td>
             <td>
-                1500000
+                <ul>
+                    <% for(let k=0; k<data[i].Menus.length; k++){%>
+                    <li><%= helper.rupiahString(data[i].Menus[k].price) %></li>
+                    <% } %>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <% for(let k=0; k<data[i].Menus.length; k++){%>
+                    <li><%= helper.rupiahString(helper.countTotal(data[i].Menus[k].price, data[i].Menus[k].PesananMenu.quantity)) %></li>
+                    <% } %>
+                </ul>
             </td>
             <td><%= data[i].status %></td>
         </tr>
