@@ -2,7 +2,7 @@
 <%- include('../partial/menu.ejs') %>
 
 <div class="container">
-    
+
 <h1>Meja <%= data[0].mejaId %></h1>
 <table  class="table table-striped">
     <tr>
@@ -32,8 +32,12 @@
 </table>
 
 
-<a class="btn btn-primary btn-lg btn-block" href="/kasir/<%= data[0].id %>/bayar">BAYAR</a>
+<a class="btn btn-primary btn-lg btn-block" href="/kasir/<%= data[0].id %>/bayar">BAYAR</a><br><br><br>
 
+<form action="/kasir/<%= data[0].id %>/struk" method="post">
+    <input type='text' name='email'><br>
+    <input type='submit' class="btn btn-primary btn-lg" value='Kirim Email'>
+</form>
 </div>
 
 <%- include('../partial/footer.ejs') %>

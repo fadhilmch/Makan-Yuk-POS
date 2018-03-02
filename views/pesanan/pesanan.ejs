@@ -2,12 +2,13 @@
 <%- include('../partial/menu.ejs') %>
 
 <div class="container">
-    <h2>Choose table to serve:</h2>
+    <h2>Pilih meja untuk dilayani:</h2>
 
     <form action="/pesanan" method="post">
         <br>
         <div class="row">
             <div class="col-sm-4">
+
                 <button class="btn-lg btn-block <%if(pesanans.indexOf(1)!= -1) {%> btn <% } else { %>btn-success <% } %> custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(1)!= -1) {%>disabled<% } %> value="1"><h1>1</h1></button>
                 <button class="btn-lg btn-block <%if(pesanans.indexOf(4)!= -1) {%> btn <% } else { %>btn-success <% } %> custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(4)!= -1) {%>disabled<% } %> value="4"><h1>4</h1></button>
             </div>
@@ -21,7 +22,7 @@
             </div>
         </div>
     </form>
-    
+
 </div>
 
 <%- include('../partial/footer.ejs') %>
