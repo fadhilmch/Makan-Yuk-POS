@@ -2,12 +2,45 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models');
 const checkLogin = require('../helpers/checkLogin');
+const sequelize = require('sequelize');
+const op = sequelize.Op;
 
 
 router.get('/',checkLogin, (req, res) =>{
     // res.render('./menu/menu.ejs');
-    models.Menu.findAll({}).then(dataMenu =>{
-        res.render('./menu/menu.ejs', {data:dataMenu})
+    models.Menu.findAll({
+        where:{
+            jenis:'makanan',
+        }
+    }).then(makanan =>{
+        models.Menu.findAll({
+            where:{
+                jenis:'minuman',
+            }
+        }).then(minuman =>{
+            res.render('./menu/menu.ejs', {minuman:minuman,data:makanan})
+        })
+      })
+})
+
+router.post('/search',checkLogin, (req, res) =>{
+    let search = req.body.search;
+    // res.render('./menu/menu.ejs');
+    models.Menu.findAll({
+        where:{
+            jenis:'makanan',
+            name:{[op.iLike]:'%'+search+'%'}
+        }
+    }).then(makanan =>{
+        models.Menu.findAll({
+            where:{
+                jenis:'minuman',
+                name:{[op.iLike]:'%'+search+'%'}
+
+            }
+        }).then(minuman =>{
+            res.render('./menu/menu.ejs', {minuman:minuman,data:makanan})
+        })
       })
 })
 

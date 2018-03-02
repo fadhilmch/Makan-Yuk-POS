@@ -4,22 +4,11 @@ const models = require('../models');
 const checkLogin = require('../helpers/checkLogin');
 
 
-// router.get('/',checkLogin, (req, res)=>{
-//     models.Pesanan.findAll({
-//         include:
-//         [{model: models.PesananMenu, attributes: ['id','status']},{model: models.Menu}]
-//
-//     }).then(data =>{
-//         // res.send(data)
-//         res.render('./dapur/dapur.ejs', {data:data})
-//     })
-// })
-
-router.get('/', (req, res)=>{
+router.get('/',checkLogin, (req, res)=>{
     res.redirect('/dapur/makanan');
 })
 
-router.get('/makanan',(req,res) => {
+router.get('/makanan',checkLogin,(req,res) => {
     models.PesananMenu.findAll({
         attributes:['id','quantity','keterangan','PesananId','status'],
         include:[
@@ -70,7 +59,7 @@ router.get('/makanan',(req,res) => {
     })
 })
 
-router.get('/minuman',(req,res) => {
+router.get('/minuman',checkLogin,(req,res) => {
     models.PesananMenu.findAll({
         attributes:['id','quantity','keterangan','PesananId','status'],
         include:[
@@ -120,7 +109,7 @@ router.get('/minuman',(req,res) => {
     })
 })
 
-router.get('/:id/done', (req, res) =>{
+router.get('/:id/done',checkLogin, (req, res) =>{
     models.PesananMenu.findOne({
         where:{
             id:req.params.id
