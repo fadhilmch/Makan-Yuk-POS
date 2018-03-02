@@ -1,22 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const nodemailer = require('nodemailer');
-
 const models = require('../models');
 const checkLogin = require('../helpers/checkLogin');
 const sequelize = require('sequelize');
 const op = sequelize.Op;
+const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
 
 const myMail = 'belanjamurahasik@gmail.com';
 
-
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: myMail,
-    pass: 'ayokitabelanja'
-  }
+var transporter = nodemailer.createTransport({
+ service: 'gmail',
+ auth: {
+        xoauth2: xoauth2.createXOAuth2Generator({
+            user: myMail,
+            clientId: '12541434386-6cambo9kr12pc4chglk7785r1jeoe6es.apps.googleusercontent.com',
+            clientSecret: 'T5URaJr_9pliBtNXstZfVS6Z',
+            refreshToke: ''
+        })
+    }
 });
+
 
 router.get('/',checkLogin, (req, res)=>{
     models.Pesanan.findAll({
@@ -77,17 +81,7 @@ router.get('/:id/struk', (req, res)=>{
 })
 
 router.post('/:id/struk', (req, res)=>{
-    let mailOptions = {
-        from: myMail,
-        to: req.body.email,
-        subject: `Struk Pembayaran Transaksi ID${req.params.id}`,
-        text: 'Terima Kasih sudah berkunjung'
-    };
 
-    transporter.sendMail(mailOptions, (err,info) => {
-        console.log(err + " - " + info);
-        res.redirect(`/kasir/${req.params.id}/struk`)
-    })
 })
 
 

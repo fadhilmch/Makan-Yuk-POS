@@ -24,18 +24,21 @@ router.get('/signup', (req,res) => {
 router.post('/signup', (req,res) => {
     models.User.findAll({
         where:{
-            username:req.body.username
+            email:req.body.email
         }
     }).then(users => {
         if(users.length>0){
-            let err = new Error("User sudah terdaftar! Login atau gunakan username lain!");
+            let err = new Error("User sudah terdaftar! Login atau gunakan email lain!");
             res.redirect(`/signup?err=${err.message}`);
         }
         else{
             bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
                 let newUser = {
                     username:req.body.username,
-                    password:hash
+                    password:hash,
+                    RestaurantId:req.body.RestaurantId,
+                    RestaurantName:req.body.RestaurantName,
+                    email:req.body.email
                 }
                 models.User.create(newUser)
                     .then(()=> {
@@ -64,7 +67,13 @@ router.post('/login', (req,res) => {
         if(user){
             bcrypt.compare(req.body.password, user.password, function(err, result) {
                 if(result){
-                    req.session.user = {username:user.username, password:user.password}
+                    req.session.user = {
+                        username:user.username,
+                        password:user.password,
+                        RestaurantId:user.RestaurantId,
+                        RestaurantName:user.RestaurantName,
+                        email:user.email,
+                    }
                     res.redirect('/home');
                 }
                 else{
@@ -97,7 +106,7 @@ router.get('/logout', (req,res) => {
 
 router.get('/home',checkLogin,(req,res) => {
     console.log(req.session)
-    res.render('home',{username:req.session.user.username});
+    res.render('home',{user:req.session.user});
 });
 
 
