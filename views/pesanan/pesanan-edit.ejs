@@ -3,11 +3,33 @@
 
 <div class="container">
 
-    <h1>Edit Pesanan Meja <%=pesanan.mejaId%> </h2>
+        <div class="page-header">
+                <h1>Tambah Pesanan
+                <small>Edit Pesanan Meja <%=pesanan.mejaId%></small></h1>
+            </div>
+        <div>
+           
+    <form class="form-inline" action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan" method="post">
+        <div class="form-group">
+            <label for="sel1">Nama Menu:</label>
+            <select class="form-control" name="MenuId" id="sel1">
+                <% for(let i = 0; i < menus.length; i++){%>
+                    <option value = "<%=menus[i].id%>"><%=menus[i].name%></option>
+                <% } %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="text">Jumlah:</label>
+            <input type="text" class="form-control" id="text" placeholder="Jumlah" name="quantity">
+        </div>
+        <div class="form-group">
+            <label for="text">Keterangan:</label>
+            <input type="text" class="form-control" id="text" placeholder="Keterangan" name="keterangan">
+        </div>
+        <button type="submit" class="btn btn-primary">Tambah Pesanan</button>
+    </form>
 
-<div>
-            <h2>Tambah Pesanan</h2>
-            <form action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan" method="post">
+            <!-- <form class="form-inline" action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan" method="post">
                 <table>
                     <tr>
                         <th>Nama Menu</th>
@@ -31,40 +53,44 @@
                     </tr>
                 </table>
                 <input type="submit" value="Tambah Pesanan">
-            </form>
+            </form> -->
         </div><br><br>
         <div>
     <form action="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/edit/<%=id_menu%>" method="post">
-        <table>
-            <tr>
-                <th>No</th>
-                <th>Nama Menu</th>
-                <th>Jumlah</th>
-                <th>Harga Satuan</th>
-                <th>Harga Jumlah</th>
-                <th>Keterangan</th>
-                <th></th>
-            </tr>
-            <% for(let i = 0; i < pesanan.Menus.length; i++){%>
-            <tr>
-                <td><%=i+1%></td>
-                <td><%=pesanan.Menus[i].name%></td>
-                <%if(pesanan.Menus[i].id == id_menu){%>
-                    <td><input type='text' name='quantity' value='<%=pesanan.Menus[i].PesananMenu.quantity%>'></td>
-                <% } else {%>
-                    <td><%=pesanan.Menus[i].PesananMenu.quantity %></td>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Menu</th>
+                    <th>Jumlah</th>
+                    <th>Harga Satuan</th>
+                    <th>Harga Jumlah</th>
+                    <th>Keterangan</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < pesanan.Menus.length; i++){%>
+                <tr>
+                    <td><%=i+1%></td>
+                    <td><%=pesanan.Menus[i].name%></td>
+                    <%if(pesanan.Menus[i].id == id_menu){%>
+                        <td><input type='text' name='quantity' value='<%=pesanan.Menus[i].PesananMenu.quantity%>'></td>
+                    <% } else {%>
+                        <td><%=pesanan.Menus[i].PesananMenu.quantity %></td>
+                    <% } %>
+                    <td><%=helper.rupiahString(pesanan.Menus[i].price) %></td>
+                    <td><%=helper.rupiahString(helper.countTotal(pesanan.Menus[i].price, pesanan.Menus[i].PesananMenu.quantity))%></td>
+                    <%if(pesanan.Menus[i].id == id_menu){%>
+                        <td><input type='text' name='keterangan' value='<%=pesanan.Menus[i].PesananMenu.keterangan%>'></td>
+                        <td><input type='submit' value='Save Edit'></td>
+                    <% } else {%>
+                        <td><%=pesanan.Menus[i].PesananMenu.keterangan%></td>
+                        <td><a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/edit/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Edit</a> | <a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/delete/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Delete</a></td>
+                    <% } %>
+                </tr>
                 <% } %>
-                <td><%=helper.rupiahString(pesanan.Menus[i].price) %></td>
-                <td><%=helper.rupiahString(helper.countTotal(pesanan.Menus[i].price, pesanan.Menus[i].PesananMenu.quantity))%></td>
-                <%if(pesanan.Menus[i].id == id_menu){%>
-                    <td><input type='text' name='keterangan' value='<%=pesanan.Menus[i].PesananMenu.keterangan%>'></td>
-                    <td><input type='submit' value='Save Edit'></td>
-                <% } else {%>
-                    <td><%=pesanan.Menus[i].PesananMenu.keterangan%></td>
-                    <td><a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/edit/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Edit</a> | <a href="/pesanan/<%=pesanan.id%>/meja/<%=pesanan.mejaId%>/pesan/delete/<%=pesanan.Menus[i].PesananMenu.MenuId%>">Delete</a></td>
-                <% } %>
-            </tr>
-            <% } %>
+            </tbody>
         </table>
     </form>
 <div>
