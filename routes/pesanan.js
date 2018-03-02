@@ -16,7 +16,7 @@ router.get('/',checkLogin, (req, res) => {
     })
         .then(pesanans => {
             // res.send(pesanans.map(value => value.mejaId))
-            res.render('./pesanan/pesanan',{pesanans:pesanans.map(value => value.mejaId)});
+            res.render('./pesanan/pesanan',{pesanans:pesanans.map(value => value.mejaId), username:req.session.user.username});
         })
 });
 
@@ -51,7 +51,7 @@ router.get('/:id/meja/:no_meja/pesan',checkLogin, (req, res) => {
         })
             .then(menus => {
                 res.render('./pesanan/pesanan-list', {
-                   pesanan:pesanan,menus:menus,err:err
+                   pesanan:pesanan,menus:menus,err:err, username:req.session.user.username
                });
             });
     })
@@ -86,7 +86,7 @@ router.get('/:id/meja/:no_meja/pesan/edit/:id_menu',checkLogin, (req,res) => {
             }
         }).then(menus => {
             // res.send(menus);
-            res.render('./pesanan/pesanan-edit', {id_menu:req.params.id_menu,menus:menus,pesanan:pesanan});
+            res.render('./pesanan/pesanan-edit', {id_menu:req.params.id_menu,menus:menus,pesanan:pesanan,username:req.session.user.username});
         })
     })
 });

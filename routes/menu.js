@@ -18,7 +18,7 @@ router.get('/',checkLogin, (req, res) =>{
                 jenis:'minuman',
             }
         }).then(minuman =>{
-            res.render('./menu/menu.ejs', {minuman:minuman,data:makanan})
+            res.render('./menu/menu.ejs', {minuman:minuman,data:makanan,username:req.session.user.username})
         })
       })
 })
@@ -39,14 +39,14 @@ router.post('/search',checkLogin, (req, res) =>{
 
             }
         }).then(minuman =>{
-            res.render('./menu/menu.ejs', {minuman:minuman,data:makanan})
+            res.render('./menu/menu.ejs', {minuman:minuman,data:makanan,username:req.session.user.username})
         })
       })
 })
 
 router.get('/add',checkLogin, (req, res) =>{
     let err = req.query;
-    res.render(`./menu/add-menu.ejs`,{err:err});
+    res.render(`./menu/add-menu.ejs`,{err:err, username:req.session.user.username});
 })
 
 router.post('/add', (req, res) =>{
@@ -66,7 +66,7 @@ router.post('/add', (req, res) =>{
 router.get('/edit/:id',checkLogin, (req, res) =>{
     let err = req.query;
     models.Menu.findById(req.params.id).then(dataMenu => {
-        res.render('./menu/edit-menu.ejs', {data:dataMenu,err:err})
+        res.render('./menu/edit-menu.ejs', {data:dataMenu,err:err, username:req.session.user.username})
     })
 });
 
