@@ -1,18 +1,22 @@
 <%- include('../partial/header.ejs') %>
 <%- include('../partial/menu.ejs') %>
+<div class="container">
+
 <h3><a href="/dapur/makanan">Makanan</a></h3>
 <h3><a href="/dapur/minuman">Minuman</a></h3>
 
 <h3>Pesanan Baru</h3>
-<table>
+<table class="table table-striped">
     <thead>
-        <th>No</th>
-        <th>ID Pesanan</th>
-        <th>No Meja</th>
-        <th>Menu</th>
-        <th>Quantity</th>
-        <th>Keterangan</th>
-        <th>Action</th>
+        <tr>
+            <th>No</th>
+            <th>ID Pesanan</th>
+            <th>No Meja</th>
+            <th>Menu</th>
+            <th>Quantity</th>
+            <th>Keterangan</th>
+            <th>Action</th>
+        </tr>
     </thead>
     <tbody>
         <% for(let i=0; i<data.length; i++) {%>
@@ -38,14 +42,16 @@
 
 
 <h3>Pesanan Selesai</h3>
-<table>
+<table class="table table-striped">
     <thead>
-        <th>No</th>
-        <th>ID Pesanan</th>
-        <th>No Meja</th>
-        <th>Menu</th>
-        <th>Quantity</th>
-        <th>Keterangan</th>
+        <tr>
+            <th>No</th>
+            <th>ID Pesanan</th>
+            <th>No Meja</th>
+            <th>Menu</th>
+            <th>Quantity</th>
+            <th>Keterangan</th>
+        </tr>
     </thead>
     <tbody>
         <% for(let i=0; i<dataDone.length; i++) {%>
@@ -60,5 +66,10 @@
         <% } %>
     </tbody>
 </table>
+
+
+</div>
+
+
 <%- include('../partial/footer.ejs') %>
 
