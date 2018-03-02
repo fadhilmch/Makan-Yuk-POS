@@ -3,7 +3,11 @@
 
 
 <div class="container">
-        <h2>Status Meja</h2>        
+        <h2>Status Meja</h2>
+        <h4><a href='/kasir'>All</a>
+        <a href='/kasir/active'>Active</a>
+        <a href='/kasir/history'>History</a></h4>
+
         <table class="table table-striped">
           <thead>
             <tr>
@@ -56,7 +60,7 @@
                 <% if(data[i].status != 'done'){ %>
                     <a class="btn btn-danger" href="/kasir/<%= data[i].id %>/struk">BAYAR</a>
                 <% } else { %>
-                    <a class="btn btn-success" href="">Sudah Bayar</a>
+                    <a class="btn btn-success" href="" disabled>Sudah Bayar</a>
                 <% } %>
               </td>
             </tr>

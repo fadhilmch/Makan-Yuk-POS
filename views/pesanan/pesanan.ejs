@@ -2,26 +2,26 @@
 <%- include('../partial/menu.ejs') %>
 
 <div class="container">
-    <h2>Choose table to serve:</h2>
+    <h2>Pilih meja untuk dilayani:</h2>
 
     <form action="/pesanan" method="post">
         <br>
         <div class="row">
             <div class="col-sm-4">
-                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(1)!= -1) {%>disabled<% } %> value="1">Table 1</button>
-                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(4)!= -1) {%>disabled<% } %> value="4">Table 4</button>
+                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(1)!= -1) {%>disabled<% } %> value="1">Meja 1</button>
+                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(4)!= -1) {%>disabled<% } %> value="4">Meja 4</button>
             </div>
             <div class="col-sm-4">
-                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(2)!= -1) {%>disabled<% } %> value="2">Table 2</button>
-                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(5)!= -1) {%>disabled<% } %> value="5">Table 5</button>
+                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(2)!= -1) {%>disabled<% } %> value="2">Meja 2</button>
+                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(5)!= -1) {%>disabled<% } %> value="5">Meja 5</button>
             </div>
             <div class="col-sm-4">
-                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(3)!= -1) {%>disabled<% } %> value="3">Table 3</button>
-                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(6)!= -1) {%>disabled<% } %> value="6">Table 6</button>
+                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(3)!= -1) {%>disabled<% } %> value="3">Meja 3</button>
+                <button class="btn-lg btn-block btn-success custom-table" name="table_number" type="submit" <%if(pesanans.indexOf(6)!= -1) {%>disabled<% } %> value="6">Meja 6</button>
             </div>
         </div>
     </form>
-    
+
 </div>
 
 <%- include('../partial/footer.ejs') %>
