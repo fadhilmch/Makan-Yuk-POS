@@ -29,7 +29,7 @@ router.get('/',checkLogin, (req, res)=>{
         order:[['updatedAt','DESC']]
     }).then(data =>{
         // res.send(data)
-        res.render('./kasir/kasir.ejs', {data:data, username:req.session.user.username})
+        res.render('./kasir/kasir.ejs', {data:data, user:req.session.user})
     })
 })
 
@@ -45,7 +45,7 @@ router.get('/active',checkLogin, (req, res)=>{
         order:[['updatedAt','DESC']]
     }).then(data =>{
         // res.send(data)
-        res.render('./kasir/kasir.ejs', {data:data, username:req.session.user.username})
+        res.render('./kasir/kasir.ejs', {data:data, user:req.session.user})
     })
 })
 
@@ -61,7 +61,7 @@ router.get('/history',checkLogin, (req, res)=>{
         order:[['updatedAt','DESC']]
     }).then(data =>{
         // res.send(data)
-        res.render('./kasir/kasir.ejs', {data:data, username:req.session.user.username})
+        res.render('./kasir/kasir.ejs', {data:data, user:req.session.user})
     })
 })
 
@@ -76,7 +76,7 @@ router.get('/:id/struk', (req, res)=>{
         ]
     }).then(data => {
         // res.send(data)
-        res.render('./kasir/struk.ejs', {data:data, username:req.session.user.username})
+        res.render('./kasir/struk.ejs', {data:data, user:req.session.user})
     })
 })
 
