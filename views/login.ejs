@@ -1,19 +1,38 @@
 <%- include('./partial/header.ejs') %>
-<%- include('./partial/menu.ejs') %>
 
 <div class="container">
 
-    <h2>Makan Yuk</h2>
-    <a href="/signup">Sign Up</a>
-    <h3>Login</h3>
-    <%if(err.err!=undefined){%>
-    <p style="color:red"><%=err.err%></p>
-    <% } %>
-    <form action="/login" method="post">
+    
+    <!-- <form action="/login" method="post">
     Username:<br>
     <input name="username" type="text" required placeholder="Username"><br>
     Password:<br>
     <input name="password" type="password" required placeholder="Password"><br>
     <input type="submit" value="Login">
+    </form> -->
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <br><br><br>
+            <h2>Makan Yuk</h2>
+            <h3>Login</h3>
+            <%if(err.err!=undefined){%>
+            <p style="color:red"><%=err.err%></p>
+            <% } %>
+            <form action="/login" method="post">
+                <div class="form-group">
+                <label for="text">Username:</label>
+                <input type="text" class="form-control" name="username" required placeholder="Username">
+                </div>
+                <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" name="password" required placeholder="Password" >
+                </div>
+                <button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
+            </form> <br>
+            <a class="btn btn-lg btn-block btn" href="/signup">Sign Up</a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
 
-    </form>
+</div>
