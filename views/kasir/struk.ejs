@@ -1,0 +1,43 @@
+<%- include('../partial/header.ejs') %>
+<%- include('../partial/menu.ejs') %>
+
+<div class="container">
+
+<h1>Meja <%= data[0].mejaId %></h1>
+<table  class="table table-striped">
+    <tr>
+        <td>No</td>
+        <td>Name</td>
+        <td>Harga</td>
+        <td>Qty</td>
+        <td>Total</td>
+    </tr>
+    <% let total = 0 %>
+    <% for(let i=0; i<data[0].Menus.length; i++){ %>
+        <tr>
+            <% no=i+1 %>
+            <td><%= no %></td>
+            <td><%= data[0].Menus[i].name %></td>
+            <td><%= helper.rupiahString(data[0].Menus[i].price) %></td>
+            <td><%= data[0].PesananMenus[i].quantity %></td>
+            <td><%= helper.rupiahString((data[0].PesananMenus[i].quantity*data[0].Menus[i].price)) %></td>
+            <% total += data[0].PesananMenus[i].quantity*data[0].Menus[i].price %>
+        </tr>
+    <% } %>
+    <tr>
+        <td colspan="3"></td>
+        <td><h3>Total: </h3></td>
+        <td><h3><%= helper.rupiahString(total) %></h3></td>
+    </tr>
+</table>
+
+
+<a class="btn btn-primary btn-lg btn-block" href="/kasir/<%= data[0].id %>/bayar">BAYAR</a><br><br><br>
+<!-- 
+<form action="/kasir/<%= data[0].id %>/struk" method="post">
+    <input type='text' name='email'><br>
+    <input type='submit' class="btn btn-primary btn-lg" value='Kirim Email'>
+</form>
+</div> -->
+
+<%- include('../partial/footer.ejs') %>

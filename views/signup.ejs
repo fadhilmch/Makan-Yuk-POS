@@ -1,0 +1,57 @@
+<%- include('./partial/header.ejs') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <br><br><br>
+            <h2>Makan Bang</h2>
+            <h3>Sign Up</h3>
+            <%if(err.err!=undefined){%>
+            <p style="color:red"><%=err.err%></p>
+            <% } %>
+            <form action="/signup" method="post">
+                <div class="form-group">
+                <label for="text">Username:</label>
+                <input type="text" class="form-control" name="username" required placeholder="Username">
+                </div>
+                <div class="form-group">
+                <label for="text">Email:</label>
+                <input type="text" class="form-control" name="email" required placeholder="Email">
+                </div>
+                <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" name="password" required placeholder="Password" >
+                </div>
+                <div class="form-group">
+                <label for="text">Restaurant Id:</label>
+                <input type="text" class="form-control" name="RestaurantId" required placeholder="ex: 1">
+                </div>
+                <div class="form-group">
+                <label for="text">Restaurant Name:</label>
+                <input type="text" class="form-control" name="RestaurantName" required placeholder="ex: Makan Bang Resto">
+                </div>
+                <button type="submit" class="btn btn-lg btn-block btn-danger">Register</button>
+            </form> <br>
+            <a class="btn btn-lg btn-block btn-primary" href="/login">Login</a>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+
+
+    <!-- <h2>Makan Yuk</h2>
+    <a href="/login">Login</a>
+    <h3>Sign Up</h3>
+    <%if(err.err!=undefined){%>
+    <p style="color:red"><%=err.err%></p>
+    <% } %>
+    <form action="/signup" method="post">
+    Username:<br>
+    <input name="username" type="text" required placeholder="Username"><br>
+    Password:<br>
+    <input name="password" type="password" required placeholder="Password"><br>
+    <input type="submit" value="Sing Up">
+
+    </form> -->
+
+</div>
