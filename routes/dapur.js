@@ -53,7 +53,7 @@ router.get('/makanan',checkLogin,(req,res) => {
         }).then(dataDone =>{
             let idArr = data.map(val => val.id);
             console.log(idArr);
-            res.render('./dapur/dapur.ejs', {idArr:idArr,data:data,dataDone:dataDone, username:req.session.user.username})
+            res.render('./dapur/dapur.ejs', {idArr:idArr,data:data,dataDone:dataDone, user:req.session.user})
         })
 
     })
@@ -104,7 +104,7 @@ router.get('/minuman',checkLogin,(req,res) => {
             // res.send(dataDone)
             let idArr = data.map(val => val.id);
             console.log(idArr);
-            res.render('./dapur/dapur.ejs', {idArr:idArr,data:data,dataDone:dataDone,username:req.session.user.username})
+            res.render('./dapur/dapur.ejs', {idArr:idArr,data:data,dataDone:dataDone,user:req.session.user})
         })
     })
 })

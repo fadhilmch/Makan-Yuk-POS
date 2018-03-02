@@ -61,8 +61,8 @@
         <td><%= minuman[i].getPriceRupiah() %></td>
         <td><%= minuman[i].jenis %></td>
         <td>
-            <a class="btn btn-warning" href="/menus/edit/<%= data[i].id %>">EDIT</a>
-            <a class="btn btn-danger" href="/menus/delete/<%= data[i].id %>">DELETE</a>
+            <a class="btn btn-warning" href="/menus/edit/<%= minuman[i].id %>">EDIT</a>
+            <a class="btn btn-danger" href="/menus/delete/<%= minuman[i].id %>">DELETE</a>
         </td>
     </tr>
     <% } %>
