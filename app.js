@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const port = process.env.PORT || 3000;
 
 const routerIndex = require('./routes/index');
 const routerMenu = require('./routes/menu');
@@ -35,6 +36,6 @@ app.use('/pesanan', routerPesanan);
 app.use('/kasir', routerKasir);
 app.use('/dapur', routerDapur);
 
-app.listen(3000, function(err){
-    console.log('Aplikasi berjalan di 3000')
+app.listen(port, function(err){
+    console.log('Aplikasi berjalan di '+port)
 })
