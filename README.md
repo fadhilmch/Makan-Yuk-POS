@@ -2,7 +2,7 @@
 > Point-of-Sales Platform for Restaurant / Cafe develop using Express JS
 
 ## Overview
-![Alt Text](https://media.giphy.com/media/cJuKU4Iquy7e8jfNBC/giphy.gif = 960x680)
+![Alt Text](https://media.giphy.com/media/cJuKU4Iquy7e8jfNBC/giphy.gif)
 ## Features
 ### Customize Menu Database
 ![Alt Text](https://media.giphy.com/media/vuO9NmoHhV3te5FT8a/giphy.gif)
