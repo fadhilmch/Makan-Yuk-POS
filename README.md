@@ -1,7 +1,8 @@
 # Makan-Yuk-POS
-Point-of-Sales Platform for Restaurant / Cafe develop using Express JS
+> Point-of-Sales Platform for Restaurant / Cafe develop using Express JS
 
 ## Overview
+<img src="https://media.giphy.com/media/cJuKU4Iquy7e8jfNBC/giphy.gif" />
 ![Alt Text](https://media.giphy.com/media/cJuKU4Iquy7e8jfNBC/giphy.gif)
 ## Features
 ### Customize Menu Database
@@ -14,7 +15,7 @@ Point-of-Sales Platform for Restaurant / Cafe develop using Express JS
 ## Usage
 ```
 npm start
-#or
+# or
 node app.js
 ```
 
