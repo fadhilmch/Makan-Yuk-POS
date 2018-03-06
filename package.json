@@ -7,16 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "engines": {
+    "node": "5.7.1"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fadhilmch/Makan-Yuk-POS.git"
   },
   "author": "Fadhil Mochammad, Yohanes Sahrul",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fadhilmch/Makan-Yuk-POS/issues"
-  },
-  "homepage": "https://github.com/fadhilmch/Makan-Yuk-POS#readme",
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
@@ -25,8 +24,5 @@
     "express-session": "^1.15.6",
     "pg": "^7.4.1",
     "sequelize": "^4.34.1",
-  },
-  "engines": {
-    "node": "5.7.1"
   }
 }
